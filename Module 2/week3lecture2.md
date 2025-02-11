@@ -31,17 +31,73 @@
 
 ![](imgs/statementCoverage.png)
 
+```
+def check_age(age):
+    if age >= 18:       # Statement 1
+        return "Adult"  # Statement 2
+    else:
+        return "Minor"  # Statement 3
+
+age = 20                # covers statement 1 and 2
+age = 15                # covers statement 3
+```
+
+
 **Branch coverage**: white box testing technique that ensures each branch (equivalently, each decision) is executed at least once during testing.
 
 ![](imgs/branchCoverage.png)
+
+```
+def check_temperature(temp):
+    if temp > 30:      # Branch 1 (temp > 30)
+        return "Hot"
+    elif temp < 10:    # Branch 2 (temp < 10)
+        return "Cold"
+    else:              # Branch 3 (10 <= temp <= 30)
+        return "Mild"
+
+temp = 35              # covers branch 1
+temp = 5               # covers branch 2
+temp = 15              # covers branch 3
+```
 
 **Condition coverage**: white box testing technique that ensures each condition is executed to both True and False evaluations.
 
 ![](imgs/conditionCoverage.png)
 
+```
+def login(username, password):
+    if username == "admin" and password == "secret":  # Conditions: (A and B)
+        return "Access granted"
+    else:
+        return "Access denied"
+
+A = true, B = true      -> permission granted
+A = true, B = false     -> permission denied
+A = false, B = true     -> permission denied
+A = false, B = false    -> permission denied
+```
+
 **Path coverage**: white box testing technique that ensures each linearly independent path in the control graph is executed.
 
 ![](imgs/pathCoverage.png)
+
+```
+def calculate_discount(member, coupon):
+    discount = 0
+    if member:        # Path 1: member=True
+        discount += 10
+    if coupon:        # Path 2: coupon=True
+        discount += 5
+    return discount
+
+member = True, coupon = True        # 15
+member = True, coupon = False       # 10
+member = False, coupon = True       # 5
+member = False, coupon = False      # 0
+
+```
+Path Coverage > MC/DC Coverage > Branch/Condition Coverage > Statement Coverage
 
 **Fault injection**: testing by deliberately introducing faults into the software.
 
